@@ -704,6 +704,7 @@ class _SubscriberImpl(_TopicImpl):
             new_callbacks = self.callbacks[:]
             new_callbacks.append((cb, cb_args))
             self.callbacks = new_callbacks
+            assert len(self.callbacks) < 2, "(ishida) multiple callbacks may cause hanging"
 
         # #1852: invoke callback with any latched messages
         for c in self.connections:
